@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from "react-native";
 import { Redirect } from "expo-router";
 
 export const index = () => {
-  return <Redirect href="/welocme" />;
+  return <Redirect href={"/welcome"} />;
 };
 
 export default index;
