@@ -12,7 +12,7 @@ import { Link } from 'expo-router'
           <Image source={require("../../assets/images/dragonBallZ.jpg")} style={styles.images}/>
           </View>
           <View style={styles.containerButton}>
-            <Link href={"./profile"}>Navegar</Link>
+            <Link href={"../profile"}>Navegar</Link>
           </View>
           </>
       )

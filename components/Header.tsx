@@ -4,7 +4,7 @@ import { StyleSheet ,Text, View } from 'react-native'
 export const Header = () => {
     return (
       <View>
-        <Text> Bienvenido a la página </Text>
+        <Text> Esto es el header </Text>
       </View>
     )
   }
