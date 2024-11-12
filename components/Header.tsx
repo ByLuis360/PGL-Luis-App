@@ -6,7 +6,7 @@ export const Header = () => {
     <View style={styles.descriptionContainer}>
       <Image
         style={styles.avatar}
-        source={require("../../../assets/arbol.png")}
+        source={require("../assets/images/Luis.jpg")}
       ></Image>
       <View style={styles.paragraphContainer}>
         <Text style={styles.title}>Descripción sobre mí!</Text>
