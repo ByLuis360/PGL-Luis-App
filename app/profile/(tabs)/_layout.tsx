@@ -20,10 +20,13 @@ export const tabsLayout = () => {
           tabBarIcon: () => <Entypo name="video" />,
         }}
       />
-      <Tabs.Screen name="git" options={{
-        title: "Git",
-        tabBarIcon: () => <Entypo name="github" />
-      }} />
+      <Tabs.Screen
+        name="git"
+        options={{
+          title: "Git",
+          tabBarIcon: () => <Entypo name="github" />,
+        }}
+      />
     </Tabs>
   );
 };

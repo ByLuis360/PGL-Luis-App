@@ -1,6 +1,6 @@
-import React from 'react'
-import { Image, StyleSheet ,Text, View } from 'react-native'
-import { LIGHT_COLOR } from './colors';
+import React from "react";
+import { Image, StyleSheet, Text, View } from "react-native";
+import { LIGHT_COLOR } from "./colors";
 
 export const Header = () => {
   return (
@@ -12,15 +12,15 @@ export const Header = () => {
       <View style={styles.paragraphContainer}>
         <Text style={styles.title}>Descripción sobre mí!</Text>
         <Text>
-          Soy un alumno un poco bastante vago pero que le gusta lo que hace y sobretodo y
-          más importante, soy del Barça xddd
+          Soy un alumno un poco bastante vago pero que le gusta lo que hace y
+          sobretodo y más importante, soy del Barça xddd
         </Text>
       </View>
     </View>
   );
-  }
+};
 
-export default Header
+export default Header;
 
 const styles = StyleSheet.create({
   avatar: {

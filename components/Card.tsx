@@ -4,10 +4,10 @@ export type CardProp = {
   paragraph: string;
 };
 
-const ListCard = ( {paragraph}: CardProp  ) => {
+const ListCard = ({ paragraph }: CardProp) => {
   return (
-    <ScrollView >
-      <Text style={styles.thingsThatILiked}>{paragraph}  </Text>
+    <ScrollView>
+      <Text style={styles.thingsThatILiked}>{paragraph} </Text>
     </ScrollView>
   );
 };
