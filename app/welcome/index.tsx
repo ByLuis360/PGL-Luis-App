@@ -1,45 +1,60 @@
-import { Link } from 'expo-router'
-  import React from 'react'
-  import {Image, Pressable, StyleSheet ,Text, View } from 'react-native'
+import { Link } from "expo-router";
+import React from "react";
+import { Image, StyleSheet, Text, View } from "react-native";
+import { LIGHT_COLOR } from "../../components/colors";
 
-  export const welcomePage = () => {
-      return (
-        <>
-          <View>
-          <Text> Bienvenido a mi app </Text>
-          </View>
-          <View style={styles.container}>
-          <Image source={require("../../assets/images/dragonBallZ.jpg")} style={styles.images}/>
-          </View>
-          <View style={styles.containerButton}>
-            <Link href={"../profile"}>Navegar</Link>
-          </View>
-          </>
-      )
-  }
+export const welcomePage = () => {
+  return (
+    <>
+      <View>
+        <Text style={styles.title}> Bienvenido a mi app </Text>
+      </View>
+      <View style={styles.container}>
+        <Image
+          source={require("../../assets/images/dragonBallZ.jpg")}
+          style={styles.images}
+        />
+      </View>
+      <View style={styles.containerButton}>
+        <Link href={"/profile"} style={styles.button}>
+          Navegar
+        </Link>
+      </View>
+    </>
+  );
+};
 
-  export default welcomePage
+export default welcomePage;
 
-  const styles = StyleSheet.create({
+const styles = StyleSheet.create({
+  title: {
+    textAlign: "center",
+    color: "white",
+    fontSize: 20,
+    marginTop: -24,
+    padding: 20,
+    backgroundColor: LIGHT_COLOR.titleWelcome,
+  },
   images: {
     borderRadius: 500,
     width: 300,
-    height:300
+    height: 300,
   },
   container: {
     justifyContent: "center",
     alignItems: "center",
-    flex: 1
+    flex: 1,
   },
   button: {
-    justifyContent: "center",
-    alignItems: "center",
-    width: 200,
+    width: 300,
+    paddingTop: 15,
     height: 50,
-    marginBottom: 50,
-    backgroundColor: "blue"
+    marginBottom: 80,
+    backgroundColor: LIGHT_COLOR.buttonWelcome,
+    textAlign: "center",
+    marginTop: 50,
   },
   containerButton: {
-    alignItems: "center"
-  }
+    alignItems: "center",
+  },
 });
