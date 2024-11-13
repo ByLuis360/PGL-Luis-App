@@ -1,5 +1,6 @@
 import React from 'react'
 import { Image, StyleSheet ,Text, View } from 'react-native'
+import { LIGHT_COLOR } from './colors';
 
 export const Header = () => {
   return (
@@ -34,7 +35,7 @@ const styles = StyleSheet.create({
   paragraphContainer: {
     margin: 10,
     marginBottom: 60,
-    backgroundColor: "green",
+    backgroundColor: LIGHT_COLOR.descriptionHeader,
     padding: 10,
     borderRadius: 10,
     width: "70%",
