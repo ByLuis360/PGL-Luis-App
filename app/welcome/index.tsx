@@ -19,6 +19,9 @@ export const welcomePage = () => {
         <Link href={"/profile"} style={styles.button}>
           Navegar
         </Link>
+        <Link href={"/shop"} style={styles.button}>
+          To Do
+        </Link>
       </View>
     </>
   );
@@ -31,7 +34,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     color: "white",
     fontSize: 20,
-    marginTop: -24,
+    marginTop: 0,
     padding: 20,
     backgroundColor: LIGHT_COLOR.titleWelcome,
   },
@@ -52,7 +55,7 @@ const styles = StyleSheet.create({
     marginBottom: 80,
     backgroundColor: LIGHT_COLOR.buttonWelcome,
     textAlign: "center",
-    marginTop: 50,
+    marginTop: 20,
   },
   containerButton: {
     alignItems: "center",
