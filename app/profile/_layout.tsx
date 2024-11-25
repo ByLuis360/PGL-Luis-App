@@ -1,7 +1,7 @@
 import { Tabs } from "expo-router";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import Header from "../../../components/Header";
+import Header from "../../components/Header";
 import Entypo from "@expo/vector-icons/Entypo";
 
 export const tabsLayout = () => {
@@ -17,6 +17,7 @@ export const tabsLayout = () => {
         name="hobbies"
         options={{
           title: "Hobbies",
+          href: "/profile/hobbies",
           tabBarIcon: () => <Entypo name="video" />,
         }}
       />
@@ -24,6 +25,7 @@ export const tabsLayout = () => {
         name="git"
         options={{
           title: "Git",
+          href: "/profile/git",
           tabBarIcon: () => <Entypo name="github" />,
         }}
       />

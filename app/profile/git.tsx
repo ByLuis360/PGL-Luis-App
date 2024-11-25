@@ -9,7 +9,7 @@ export const gitPage = () => {
       <Text style={{ backgroundColor: "white" }}>My repository</Text>
       <QRCode
         value="https://github.com/ByLuis360"
-        logo={require("../../../assets/images/mondongo.jpg")}
+        logo={require("../../assets/images/mondongo.jpg")}
         logoSize={10}
         logoBackgroundColor="transparent"
       />

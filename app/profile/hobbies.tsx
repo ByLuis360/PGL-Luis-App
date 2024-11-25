@@ -1,9 +1,9 @@
 import { Tabs } from "expo-router";
 import React from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
-import Header from "../../../components/Header";
-import { cards } from "../../../components/Cards";
-import ListCard, { CardProp } from "../../../components/Card";
+import Header from "../../components/Header";
+import { cards } from "../../components/Cards";
+import ListCard, { CardProp } from "../../components/Card";
 
 export const hobbiesPage = () => {
   return (
