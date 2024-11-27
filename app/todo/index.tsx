@@ -11,23 +11,28 @@ import {
 } from "react-native";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import { initialProducts } from "../../data/initial-products";
-import ProductComponent, { ProductProp } from "../../components/Product";
+import ProductComponent from "../../components/ProductComponent";
 import { getDefaultProduct, Product } from "../../types/Product";
 import uuid from "react-native-uuid";
+import Entypo from "@expo/vector-icons/Entypo";
 
 export const ShopPage = () => {
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
   const [totalPrice, setTotalPrice] = useState<number>(0);
   const [productList, setProductList] = useState<Product[]>(initialProducts);
-  const [addButtonVisible, setAddButtonVisible] = useState<boolean>(false);
   const [currentProduct, setCurrentProduct] = useState<Product>(
     getDefaultProduct()
   );
 
   const addNewProduct = () => {
-    if (!currentProduct.name || !currentProduct.category || !currentProduct.price || !currentProduct.quantity ) {
-      Alert.alert("Faltan campos por rellenar")
-      return
+    if (
+      !currentProduct.name ||
+      !currentProduct.category ||
+      !currentProduct.price ||
+      !currentProduct.quantity
+    ) {
+      Alert.alert("Faltan campos por rellenar");
+      return;
     }
     setIsModalVisible(false);
     // const newTaskItem: TaskItem = {
@@ -35,10 +40,9 @@ export const ShopPage = () => {
     // task: taskValue
     // }
 
-    addButtonVisible == true;
     currentProduct.id = uuid.v4();
     setProductList([...productList, currentProduct]);
-    setCurrentProduct(getDefaultProduct());
+    setCurrentProduct(getDefaultProduct);
   };
 
   const inputChange = (name: string, value: string) => {
@@ -63,7 +67,8 @@ export const ShopPage = () => {
       </View>
       <ScrollView>
         {productList.map((product: Product) => (
-          <ProductComponent key={product.id} product={product} />
+          <ProductComponent key={product.id} product={product} deleteProduct={() => deleteProduct(product.id)} />
+          
         ))}
       </ScrollView>
       <Button
@@ -95,9 +100,8 @@ export const ShopPage = () => {
             keyboardType="numeric"
             onChangeText={(text) => inputChange("price", text)}
           />
-          {addButtonVisible && (
-            <Button title="añadir" onPress={() => addNewProduct()} />
-          )}
+
+          <Button title="añadir" onPress={() => addNewProduct()} />
         </View>
       </Modal>
     </View>
