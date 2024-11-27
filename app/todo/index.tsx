@@ -7,6 +7,7 @@ import {
   Modal,
   ScrollView,
   TextInput,
+  Alert,
 } from "react-native";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import { initialProducts } from "../../data/initial-products";
@@ -18,16 +19,23 @@ export const ShopPage = () => {
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
   const [totalPrice, setTotalPrice] = useState<number>(0);
   const [productList, setProductList] = useState<Product[]>(initialProducts);
+  const [addButtonVisible, setAddButtonVisible] = useState<boolean>(false);
   const [currentProduct, setCurrentProduct] = useState<Product>(
     getDefaultProduct()
   );
 
   const addNewProduct = () => {
+    if (!currentProduct.name || !currentProduct.category || !currentProduct.price || !currentProduct.quantity ) {
+      Alert.alert("Faltan campos por rellenar")
+      return
+    }
     setIsModalVisible(false);
     // const newTaskItem: TaskItem = {
     // id: uuid.v4,
     // task: taskValue
     // }
+
+    addButtonVisible == true;
     currentProduct.id = uuid.v4();
     setProductList([...productList, currentProduct]);
     setCurrentProduct(getDefaultProduct());
@@ -84,10 +92,12 @@ export const ShopPage = () => {
           <TextInput
             placeholder="precio del producto"
             value={currentProduct.price}
+            keyboardType="numeric"
             onChangeText={(text) => inputChange("price", text)}
           />
-
-          <Button title="añadir" onPress={() => addNewProduct()}></Button>
+          {addButtonVisible && (
+            <Button title="añadir" onPress={() => addNewProduct()} />
+          )}
         </View>
       </Modal>
     </View>
