@@ -19,7 +19,7 @@ export const welcomePage = () => {
         <Link href={"/profile"} style={styles.button}>
           Navegar
         </Link>
-        <Link href={"/shop"} style={styles.button}>
+        <Link href={"/todo"} style={styles.button}>
           To Do
         </Link>
       </View>
