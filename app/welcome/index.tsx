@@ -20,7 +20,7 @@ export const welcomePage = () => {
           Navegar
         </Link>
         <Link href={"/todo"} style={styles.button}>
-          To Do
+          Store
         </Link>
       </View>
     </>
