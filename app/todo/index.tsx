@@ -70,27 +70,27 @@ export const ShopPage = () => {
 
   const addInCar = (product: Product) => {
     if (product.isInCar == false) {
-      const totalValue = product.price * product.quantity
-      setTotalPrice(totalPrice + totalValue)
-      product.isInCar = true
+      const totalValue = product.price * product.quantity;
+      setTotalPrice(totalPrice + totalValue);
+      product.isInCar = true;
     }
   };
 
   const quitOutFromCar = (product: Product) => {
     if (product.isInCar == true) {
-      const totalValue = product.price * product.quantity
-      setTotalPrice(totalPrice - totalValue)
-      product.isInCar = false
+      const totalValue = product.price * product.quantity;
+      setTotalPrice(totalPrice - totalValue);
+      product.isInCar = false;
     }
-  } 
+  };
 
   const deleteProduct = (id: string) => {
     setProductList(productList.filter((item) => item.id != id));
   };
 
   const deleteAllProducts = () => {
-    setProductList([])
-  }
+    setProductList([]);
+  };
 
   const editProduct = (product: Product) => {
     setProductToEdit(product);
@@ -108,26 +108,30 @@ export const ShopPage = () => {
         </Text>
       </View>
       <ScrollView>
-        {productList.map((product: Product) => (
-          <ProductComponent
-            key={product.id}
-            product={product}
-            deleteProduct={() => deleteProduct(product.id)}
-            editProduct={() => editProduct(product)}
-            addInCar={() => addInCar(product)}
-            quitOutFromCar={() => quitOutFromCar(product)}
-          />
-        ))}
+        {productList.length == 0 ? (
+          <Text>La lista está vacía</Text>
+        ) : (
+          productList.map((product: Product) => (
+            <ProductComponent
+              key={product.id}
+              product={product}
+              deleteProduct={() => deleteProduct(product.id)}
+              editProduct={() => editProduct(product)}
+              addInCar={() => addInCar(product)}
+              quitOutFromCar={() => quitOutFromCar(product)}
+            />
+          ))
+        )}
       </ScrollView>
       <View style={styles.buttons}>
-      <Button
-        title="añadir producto"
-        onPress={() => setIsModalVisible(true)}
-      ></Button>
-      <Button
-        title="Eliminar productos"
-        onPress={() => deleteAllProducts()}
-      ></Button>
+        <Button
+          title="añadir producto"
+          onPress={() => setIsModalVisible(true)}
+        ></Button>
+        <Button
+          title="Eliminar productos"
+          onPress={() => deleteAllProducts()}
+        ></Button>
       </View>
       <Modal visible={isModalVisible} transparent={true} animationType="fade">
         <View style={styles.modalContainer}>
@@ -175,7 +179,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     alignSelf: "center",
-    backgroundColor: "yellow"
+    backgroundColor: "yellow",
   },
   modalContainer: {
     justifyContent: "center",
@@ -204,5 +208,5 @@ const styles = StyleSheet.create({
     width: "50%",
     justifyContent: "center",
     gap: 20,
-  }
+  },
 });
