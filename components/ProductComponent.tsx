@@ -35,33 +35,46 @@ const ProductComponent = ({
   };
   return (
     <ScrollView style={styles.listProducts}>
-      <Image source={getImageFromCategory()} style={styles.image}></Image>
-      <Text>Nombre del producto: {product.name}</Text>
-      <Text>Categoría del producto: {product.category}</Text>
-      <Text>Cantidad del producto: {product.quantity}</Text>
-      <Text>Precio del producto: {product.price} €</Text>
-      <Text>
-        Esta en el carrito:{" "}
-        {product.isInCar == true ? (
-          <Entypo name="check" size={24} color="green" />
-        ) : (
-          <Entypo name="cross" size={24} color="red" />
-        )}
-      </Text>
-      <View style={styles.productsController}>
-        <Entypo
-          name="edit"
-          size={40}
-          color="dark"
-          onPress={() => editProduct()}
-        />
-        <Entypo name="plus" size={40} color="red" onPress={() => addInCar()} />
-        <Entypo
-          name="trash"
-          size={40}
-          color="grey"
-          onPress={() => deleteProduct()}
-        />
+      <View style={styles.container}>
+        <Image source={getImageFromCategory()} style={styles.image}></Image>
+        <Text>Nombre del producto: {product.name}</Text>
+        <Text>Categoría del producto: {product.category}</Text>
+        <Text>Cantidad del producto: {product.quantity}</Text>
+        <Text>Precio del producto: {product.price} €</Text>
+        <Text>
+          Esta en el carrito:{" "}
+          {product.isInCar == true ? (
+            <Entypo name="check" size={24} color="green" />
+          ) : (
+            <Entypo name="cross" size={24} color="red" />
+          )}
+        </Text>
+        <View style={styles.productsController}>
+          <Entypo
+            name="edit"
+            size={40}
+            color="dark"
+            onPress={() => editProduct()}
+          />
+          <Entypo
+            name="plus"
+            size={40}
+            color="red"
+            onPress={() => addInCar()}
+          />
+          <Entypo
+            name="minus"
+            size={40}
+            color="red"
+            onPress={() => addInCar()}
+          />
+          <Entypo
+            name="trash"
+            size={40}
+            color="grey"
+            onPress={() => deleteProduct()}
+          />
+        </View>
       </View>
     </ScrollView>
   );
@@ -75,13 +88,19 @@ const styles = StyleSheet.create({
     paddingTop: 40,
   },
   image: {
-    width: 170,
+    width: "100%",
     height: 100,
     marginBottom: 10,
   },
   productsController: {
-    padding: 10,
+    padding: 5,
     flexDirection: "row",
-    gap: 20,
+    gap: 5,
   },
+  container: {
+    backgroundColor: "cyan",
+    padding: 10,
+    borderColor: "black",
+    borderWidth: 2
+  }
 });

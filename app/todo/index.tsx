@@ -158,11 +158,12 @@ export default ShopPage;
 
 const styles = StyleSheet.create({
   container: {
-    width: "50%",
+    width: "100%",
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
     alignSelf: "center",
+    backgroundColor: "yellow"
   },
   modalContainer: {
     justifyContent: "center",
