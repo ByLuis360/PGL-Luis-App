@@ -7,6 +7,7 @@ export type ProductProp = {
   deleteProduct: Function;
   editProduct: Function;
   addInCar: Function;
+  quitOutFromCar: Function;
 };
 
 const ProductComponent = ({
@@ -14,6 +15,7 @@ const ProductComponent = ({
   deleteProduct,
   editProduct,
   addInCar,
+  quitOutFromCar,
 }: ProductProp) => {
   const getImageFromCategory = () => {
     switch (product.category) {
@@ -66,7 +68,7 @@ const ProductComponent = ({
             name="minus"
             size={40}
             color="red"
-            onPress={() => addInCar()}
+            onPress={() => quitOutFromCar()}
           />
           <Entypo
             name="trash"
@@ -101,6 +103,6 @@ const styles = StyleSheet.create({
     backgroundColor: "cyan",
     padding: 10,
     borderColor: "black",
-    borderWidth: 2
-  }
+    borderWidth: 2,
+  },
 });

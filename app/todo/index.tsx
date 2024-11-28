@@ -69,17 +69,26 @@ export const ShopPage = () => {
   };
 
   const addInCar = (product: Product) => {
-    const total = productList.reduce(
-      (sum, product) => sum + product.price * product.quantity,
-      0
-    );
-    setTotalPrice(total);
-    product.isInCar = true;
+    const totalValue = product.price * product.quantity
+    setTotalPrice(totalPrice + totalValue)
+    product.isInCar = true
   };
+
+  const quitOutFromCar = (product: Product) => {
+    if (product.isInCar == true) {
+      const totalValue = product.price * product.quantity
+      setTotalPrice(totalPrice - totalValue)
+      product.isInCar = false
+    }
+  } 
 
   const deleteProduct = (id: string) => {
     setProductList(productList.filter((item) => item.id != id));
   };
+
+  const deleteAllProducts = () => {
+    setProductList([])
+  }
 
   const editProduct = (product: Product) => {
     /*  setNewProduct({
@@ -110,13 +119,20 @@ export const ShopPage = () => {
             deleteProduct={() => deleteProduct(product.id)}
             editProduct={() => editProduct(product)}
             addInCar={() => addInCar(product)}
+            quitOutFromCar={() => quitOutFromCar(product)}
           />
         ))}
       </ScrollView>
+      <View style={styles.buttons}>
       <Button
         title="añadir producto"
         onPress={() => setIsModalVisible(true)}
       ></Button>
+      <Button
+        title="Eliminar productos"
+        onPress={() => deleteAllProducts()}
+      ></Button>
+      </View>
       <Modal visible={isModalVisible} transparent={true} animationType="fade">
         <View style={styles.modalContainer}>
           <Text>
@@ -187,4 +203,10 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 20,
   },
+  buttons: {
+    flexDirection: "row",
+    width: "50%",
+    justifyContent: "center",
+    gap: 20,
+  }
 });
