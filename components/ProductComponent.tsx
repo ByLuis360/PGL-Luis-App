@@ -4,11 +4,17 @@ import Entypo from "@expo/vector-icons/Entypo";
 
 export type ProductProp = {
   product: Product;
-  deleteProduct: Function
-  editProduct: Function
+  deleteProduct: Function;
+  editProduct: Function;
+  addInCar: Function;
 };
 
-const ProductComponent = ({ product, deleteProduct, editProduct}: ProductProp) => {
+const ProductComponent = ({
+  product,
+  deleteProduct,
+  editProduct,
+  addInCar,
+}: ProductProp) => {
   const getImageFromCategory = () => {
     switch (product.category) {
       case "Carnicería":
@@ -36,16 +42,26 @@ const ProductComponent = ({ product, deleteProduct, editProduct}: ProductProp) =
       <Text>Precio del producto: {product.price} €</Text>
       <Text>
         Esta en el carrito:{" "}
-        {product.isInCart == true ? (
+        {product.isInCar == true ? (
           <Entypo name="check" size={24} color="green" />
         ) : (
           <Entypo name="cross" size={24} color="red" />
         )}
       </Text>
       <View style={styles.productsController}>
-        <Entypo name="edit" size={40} color="dark" onPress={() => editProduct()} />
-        <Entypo name="plus" size={40} color="red" />
-        <Entypo name="trash" size={40} color="grey" onPress={() => deleteProduct()}/>
+        <Entypo
+          name="edit"
+          size={40}
+          color="dark"
+          onPress={() => editProduct()}
+        />
+        <Entypo name="plus" size={40} color="red" onPress={() => addInCar()} />
+        <Entypo
+          name="trash"
+          size={40}
+          color="grey"
+          onPress={() => deleteProduct()}
+        />
       </View>
     </ScrollView>
   );

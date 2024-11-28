@@ -58,8 +58,7 @@ export const ShopPage = () => {
     // task: taskValue
     // }
     setCurrentProduct(getDefaultProduct);
-    setProductToEdit(null)
-
+    setProductToEdit(null);
   };
 
   const inputChange = (name: string, value: string) => {
@@ -67,6 +66,15 @@ export const ShopPage = () => {
       ...currentProduct,
       [name]: value,
     });
+  };
+
+  const addInCar = (product: Product) => {
+    const total = productList.reduce(
+      (sum, product) => sum + product.price * product.quantity,
+      0
+    );
+    setTotalPrice(total);
+    product.isInCar = true;
   };
 
   const deleteProduct = (id: string) => {
@@ -81,7 +89,7 @@ export const ShopPage = () => {
       price: product.price,
     }); */
     setProductToEdit(product);
-    setCurrentProduct({...product});
+    setCurrentProduct({ ...product });
     setIsModalVisible(true);
   };
 
@@ -101,6 +109,7 @@ export const ShopPage = () => {
             product={product}
             deleteProduct={() => deleteProduct(product.id)}
             editProduct={() => editProduct(product)}
+            addInCar={() => addInCar(product)}
           />
         ))}
       </ScrollView>
@@ -126,15 +135,13 @@ export const ShopPage = () => {
           />
           <TextInput
             keyboardType="numeric"
-            value={currentProduct.quantity}
+            value={currentProduct.quantity.toString()}
             onChangeText={(text) => inputChange("quantity", text)}
-            placeholder="cantidad del prodducto"
           />
           <TextInput
-            value={currentProduct.price}
+            value={currentProduct.price.toString()}
             keyboardType="numeric"
             onChangeText={(text) => inputChange("price", text)}
-            placeholder="precio del prodducto"
           />
 
           <Button
@@ -161,7 +168,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignSelf: "center",
     verticalAlign: "middle",
-    backgroundColor: "purple",
+    backgroundColor: "#E0E0E0",
+    marginTop: 200,
     width: "50%",
     height: "50%",
   },
