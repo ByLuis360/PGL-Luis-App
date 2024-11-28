@@ -5,9 +5,10 @@ import Entypo from "@expo/vector-icons/Entypo";
 export type ProductProp = {
   product: Product;
   deleteProduct: Function
+  editProduct: Function
 };
 
-const ProductComponent = ({ product, deleteProduct}: ProductProp) => {
+const ProductComponent = ({ product, deleteProduct, editProduct}: ProductProp) => {
   const getImageFromCategory = () => {
     switch (product.category) {
       case "Carnicería":
@@ -42,7 +43,7 @@ const ProductComponent = ({ product, deleteProduct}: ProductProp) => {
         )}
       </Text>
       <View style={styles.productsController}>
-        <Entypo name="edit" size={40} color="dark" />
+        <Entypo name="edit" size={40} color="dark" onPress={() => editProduct()} />
         <Entypo name="plus" size={40} color="red" />
         <Entypo name="trash" size={40} color="grey" onPress={() => deleteProduct()}/>
       </View>

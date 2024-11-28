@@ -14,15 +14,16 @@ import { initialProducts } from "../../data/initial-products";
 import ProductComponent from "../../components/ProductComponent";
 import { getDefaultProduct, Product } from "../../types/Product";
 import uuid from "react-native-uuid";
-import Entypo from "@expo/vector-icons/Entypo";
 
 export const ShopPage = () => {
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
+  // const [isModalEditVisible, setIsModalEditVisible] = useState<boolean>(false);
   const [totalPrice, setTotalPrice] = useState<number>(0);
   const [productList, setProductList] = useState<Product[]>(initialProducts);
   const [currentProduct, setCurrentProduct] = useState<Product>(
     getDefaultProduct()
   );
+  const [productToEdit, setProductToEdit] = useState<Product | null>(null);
 
   const addNewProduct = () => {
     if (
@@ -34,15 +35,31 @@ export const ShopPage = () => {
       Alert.alert("Faltan campos por rellenar");
       return;
     }
+
+    if (productToEdit) {
+      setProductList(
+        productList.map((product) =>
+          product.id == productToEdit.id
+            ? { ...productToEdit, ...currentProduct }
+            : product
+        )
+      );
+    } else {
+      const newProduct: Product = {
+        ...currentProduct,
+        id: uuid.v4().toString(),
+      };
+      setProductList([...productList, newProduct]);
+    }
+
     setIsModalVisible(false);
     // const newTaskItem: TaskItem = {
     // id: uuid.v4,
     // task: taskValue
     // }
-
-    currentProduct.id = uuid.v4();
-    setProductList([...productList, currentProduct]);
     setCurrentProduct(getDefaultProduct);
+    setProductToEdit(null)
+
   };
 
   const inputChange = (name: string, value: string) => {
@@ -56,6 +73,18 @@ export const ShopPage = () => {
     setProductList(productList.filter((item) => item.id != id));
   };
 
+  const editProduct = (product: Product) => {
+    /*  setNewProduct({
+      name: product.name,
+      category: product.category,
+      quantity: product.quantity,
+      price: product.price,
+    }); */
+    setProductToEdit(product);
+    setCurrentProduct({...product});
+    setIsModalVisible(true);
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -67,8 +96,12 @@ export const ShopPage = () => {
       </View>
       <ScrollView>
         {productList.map((product: Product) => (
-          <ProductComponent key={product.id} product={product} deleteProduct={() => deleteProduct(product.id)} />
-          
+          <ProductComponent
+            key={product.id}
+            product={product}
+            deleteProduct={() => deleteProduct(product.id)}
+            editProduct={() => editProduct(product)}
+          />
         ))}
       </ScrollView>
       <Button
@@ -77,31 +110,37 @@ export const ShopPage = () => {
       ></Button>
       <Modal visible={isModalVisible} transparent={true} animationType="fade">
         <View style={styles.modalContainer}>
-          <Text> Introduce un nuevo producto </Text>
+          <Text>
+            {" "}
+            {productToEdit ? "Editar producto" : "Introduce un nuevo producto"}
+          </Text>
           <TextInput
             placeholder="nombre del producto"
             value={currentProduct.name}
             onChangeText={(text) => inputChange("name", text)}
           />
           <TextInput
-            placeholder="categoria del producto"
             value={currentProduct.category}
             onChangeText={(text) => inputChange("category", text)}
+            placeholder="categoría del producto"
           />
           <TextInput
-            placeholder="cantidad del producto"
             keyboardType="numeric"
             value={currentProduct.quantity}
             onChangeText={(text) => inputChange("quantity", text)}
+            placeholder="cantidad del prodducto"
           />
           <TextInput
-            placeholder="precio del producto"
             value={currentProduct.price}
             keyboardType="numeric"
             onChangeText={(text) => inputChange("price", text)}
+            placeholder="precio del prodducto"
           />
 
-          <Button title="añadir" onPress={() => addNewProduct()} />
+          <Button
+            title={productToEdit ? "Actualizar" : "Guardar"}
+            onPress={() => addNewProduct()}
+          />
         </View>
       </Modal>
     </View>
