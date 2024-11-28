@@ -69,9 +69,11 @@ export const ShopPage = () => {
   };
 
   const addInCar = (product: Product) => {
-    const totalValue = product.price * product.quantity
-    setTotalPrice(totalPrice + totalValue)
-    product.isInCar = true
+    if (product.isInCar == false) {
+      const totalValue = product.price * product.quantity
+      setTotalPrice(totalPrice + totalValue)
+      product.isInCar = true
+    }
   };
 
   const quitOutFromCar = (product: Product) => {
