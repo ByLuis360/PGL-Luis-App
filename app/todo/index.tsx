@@ -91,12 +91,6 @@ export const ShopPage = () => {
   }
 
   const editProduct = (product: Product) => {
-    /*  setNewProduct({
-      name: product.name,
-      category: product.category,
-      quantity: product.quantity,
-      price: product.price,
-    }); */
     setProductToEdit(product);
     setCurrentProduct({ ...product });
     setIsModalVisible(true);
