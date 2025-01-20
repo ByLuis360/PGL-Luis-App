@@ -1,7 +1,7 @@
 import { Tabs } from "expo-router";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import Header from "../../components/Header";
+import Header from "../../../components/Header";
 import Entypo from "@expo/vector-icons/Entypo";
 
 export const tabsLayout = () => {

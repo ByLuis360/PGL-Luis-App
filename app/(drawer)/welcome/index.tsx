@@ -1,7 +1,9 @@
 import { Link } from "expo-router";
 import React from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
-import { LIGHT_COLOR } from "../../components/colors";
+import { LIGHT_COLOR } from "../../../components/colors";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { Drawer } from "expo-router/drawer";
 
 export const welcomePage = () => {
   return (
@@ -11,18 +13,21 @@ export const welcomePage = () => {
       </View>
       <View style={styles.container}>
         <Image
-          source={require("../../assets/images/dragonBallZ.jpg")}
+          source={require("../../../assets/images/dragonBallZ.jpg")}
           style={styles.images}
         />
       </View>
-      <View style={styles.containerButton}>
+      {/* <View style={styles.containerButton}>
         <Link href={"/profile"} style={styles.button}>
           Navegar
         </Link>
         <Link href={"/todo"} style={styles.button}>
           Store
         </Link>
-      </View>
+        <Link href={"/dogs"} style={styles.button}>
+          Dogs
+        </Link>
+      </View> */}
     </>
   );
 };

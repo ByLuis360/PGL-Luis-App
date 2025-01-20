@@ -10,9 +10,9 @@ import {
   Alert,
 } from "react-native";
 import AntDesign from "@expo/vector-icons/AntDesign";
-import { initialProducts } from "../../data/initial-products";
-import ProductComponent from "../../components/ProductComponent";
-import { getDefaultProduct, Product } from "../../types/Product";
+import { initialProducts } from "../../../data/initial-products";
+import ProductComponent from "../../../components/ProductComponent";
+import { getDefaultProduct, Product } from "../../../types/Product";
 import uuid from "react-native-uuid";
 
 export const ShopPage = () => {
@@ -25,7 +25,7 @@ export const ShopPage = () => {
   );
   const [productToEdit, setProductToEdit] = useState<Product | null>(null);
 
-  const addNewProduct = () => {
+  const handleAddOrEditProduct = () => {
     if (
       !currentProduct.name ||
       !currentProduct.category ||
@@ -162,7 +162,7 @@ export const ShopPage = () => {
 
           <Button
             title={productToEdit ? "Actualizar" : "Guardar"}
-            onPress={() => addNewProduct()}
+            onPress={() => handleAddOrEditProduct()}
           />
         </View>
       </Modal>
