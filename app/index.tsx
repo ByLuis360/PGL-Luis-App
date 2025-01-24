@@ -1,9 +1,29 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { Redirect } from "expo-router";
+import { Redirect, router } from "expo-router";
+import { asyncStorageService } from "../service/async-storage-service";
 
 export const index = () => {
-  return <Redirect href={"/welcome"} />;
+  useEffect(() => {
+    const checkLogin = async () => {
+      const userToken = await asyncStorageService.get(
+        asyncStorageService.KEYS.userToken
+      );
+      if (userToken == null) {
+        router.navigate("/user/login");
+      } else {
+        router.navigate("/(drawer)/welcome");
+      }
+    };
+
+    checkLogin();
+  }, []);
+
+  return null;
+  // router.navigate("/welcome/index")
+  // router.navigate("/login/index")
+
+  /*   */
 };
 
 export default index;
