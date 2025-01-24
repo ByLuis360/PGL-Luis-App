@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@expo/vector-icons": "^14.0.2",
+    "@react-native-async-storage/async-storage": "^2.1.0",
     "@react-navigation/drawer": "^7.1.1",
     "@react-navigation/native": "^7.0.14",
     "expo": "^52.0.7",
@@ -37,7 +38,9 @@
     "react-native-screens": "~4.1.0",
     "react-native-svg": "^15.8.0",
     "react-native-uuid": "^2.0.3",
-    "react-native-web": "~0.19.10"
+    "react-native-web": "~0.19.10",
+    "react-toastify": "^11.0.3",
+    "toastify-react-native": "^5.0.4"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
