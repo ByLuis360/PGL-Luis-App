@@ -89,6 +89,8 @@ const styles = StyleSheet.create({
     backgroundColor: "lightgrey",
     padding: 40,
     borderRadius: 20,
+    borderColor: "black",
+    borderWidth: 3,
     width: 300,
   },
   title: {

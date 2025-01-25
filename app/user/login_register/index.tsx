@@ -77,6 +77,8 @@ const styles = StyleSheet.create({
   containerLoginBox: {
     margin: "auto",
     backgroundColor: "lightgrey",
+    borderColor: "black",
+    borderWidth: 3,
     padding: 40,
     borderRadius: 20,
     width: 300,

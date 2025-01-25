@@ -4,7 +4,7 @@ import { Redirect, router } from "expo-router";
 import { asyncStorageService } from "../service/async-storage-service";
 
 export const index = () => {
-  useEffect(() => {
+  /*   useEffect(() => {
     const checkLogin = async () => {
       const userToken = await asyncStorageService.get(
         asyncStorageService.KEYS.userToken
@@ -17,9 +17,9 @@ export const index = () => {
     };
 
     checkLogin();
-  }, []);
+  }, []); */
 
-  return null;
+  return <Redirect href={"/(drawer)/welcome"} />;
   // router.navigate("/welcome/index")
   // router.navigate("/login/index")
 
