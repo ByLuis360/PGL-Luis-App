@@ -36,23 +36,26 @@ export const registerPage = () => {
   };
 
   return (
-    <>
-      <View>
+    <View style={styles.container}>
+      <View style={styles.containerLoginBox}>
         <View>
           <ToastManager position="bottom" />
-          <Text>Inicia Sesión</Text>
-          <Text>User</Text>
+          <Text style={styles.title}>Registrate</Text>
           <TextInput
+            style={styles.input}
+            placeholder="User"
             value={currentUser.fullname}
             onChangeText={(text) => inputChange("fullname", text)}
           />
-          <Text>Email</Text>
           <TextInput
+            style={styles.input}
+            placeholder="Email"
             value={currentUser.email}
             onChangeText={(text) => inputChange("email", text)}
           />
-          <Text>password</Text>
           <TextInput
+            style={styles.input}
+            placeholder="password"
             value={currentUser.pswd}
             secureTextEntry={true}
             onChangeText={(text) => inputChange("pswd", text)}
@@ -60,10 +63,34 @@ export const registerPage = () => {
           <Button title="Registrarse" onPress={() => handleLogin()} />
         </View>
       </View>
-    </>
+    </View>
   );
 };
 
 export default registerPage;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: "#ADD8E6",
+    height: "100%",
+  },
+  containerLoginBox: {
+    margin: "auto",
+    backgroundColor: "lightgrey",
+    padding: 40,
+    borderRadius: 20,
+    width: 300,
+  },
+  title: {
+    textAlign: "center",
+    fontSize: 25,
+    marginBottom: 40,
+    fontWeight: 600,
+  },
+  input: {
+    backgroundColor: "#87cefa80",
+    borderRadius: 15,
+    marginBottom: 20,
+    padding: 15,
+  },
+});

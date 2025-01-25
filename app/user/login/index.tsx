@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { Button, StyleSheet, Text, TextInput, View } from "react-native";
+import {
+  Button,
+  ImageBackground,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from "react-native";
 import { Redirect, router } from "expo-router";
 import { getDefaultUser, User } from "../../../types/User";
 import ToastManager, { Toast } from "toastify-react-native";
@@ -37,24 +44,28 @@ export const loginPage = () => {
   };
 
   return (
-    <>
-      <View>
+    <View style={styles.container}>
+      <View style={styles.containerLoginBox}>
         <View>
           <ToastManager position="bottom" />
-          <Text>Inicia Sesión</Text>
-          <Text>Email</Text>
+          <Text style={styles.title}>Inicia Sesión</Text>
+
           <TextInput
+            style={styles.input}
+            placeholder="Email"
             value={currentUser.email}
             onChangeText={(text) => inputChange("email", text)}
           />
-          <Text>password</Text>
           <TextInput
+            style={styles.input}
+            placeholder="password"
+            secureTextEntry={true}
             value={currentUser.pswd}
             onChangeText={(text) => inputChange("pswd", text)}
           />
           <Button title="Iniciar sesión" onPress={() => handleLogin()} />
         </View>
-        <View>
+        <View style={styles.registerBox}>
           <Text>¿No te has registrado?</Text>
           <Button
             title="Registrarse"
@@ -62,10 +73,40 @@ export const loginPage = () => {
           />
         </View>
       </View>
-    </>
+    </View>
   );
 };
 
 export default loginPage;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: "#ADD8E6",
+    height: "100%",
+  },
+  containerLoginBox: {
+    margin: "auto",
+    backgroundColor: "lightgrey",
+    padding: 40,
+    borderRadius: 20,
+    width: 300,
+  },
+  title: {
+    textAlign: "center",
+    fontSize: 25,
+    marginBottom: 40,
+    fontWeight: 600,
+  },
+  input: {
+    backgroundColor: "#87cefa80",
+    borderRadius: 15,
+    marginBottom: 20,
+    padding: 15,
+  },
+  registerBox: {
+    marginTop: 30,
+    borderTopColor: "black",
+    borderTopWidth: 1,
+    paddingTop: 20,
+  },
+});
