@@ -33,7 +33,6 @@ export const loginPage = () => {
       Toast.error("The password format is no correct");
     } else {
       const token = await LoginService.loginUser(currentUser);
-      console.log(token);
       if (token != null) {
         router.navigate("/(drawer)/welcome");
         setCurrentUser(getDefaultUser());
@@ -45,9 +44,9 @@ export const loginPage = () => {
 
   return (
     <View style={styles.container}>
+      <ToastManager position="top" />
       <View style={styles.containerLoginBox}>
         <View>
-          <ToastManager position="bottom" />
           <Text style={styles.title}>Inicia Sesión</Text>
 
           <TextInput
@@ -65,7 +64,7 @@ export const loginPage = () => {
           />
           <Button title="Iniciar sesión" onPress={() => handleLogin()} />
         </View>
-        <View style={styles.registerBox}>
+          <View style={styles.registerBox}>
           <Text>¿No te has registrado?</Text>
           <Button
             title="Registrarse"

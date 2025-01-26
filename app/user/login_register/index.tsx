@@ -15,7 +15,7 @@ export const registerPage = () => {
     });
   };
 
-  const handleLogin = async () => {
+  const handleRegister = async () => {
     if (
       !currentUser.email.includes("@") ||
       (!currentUser.email.endsWith(".com") &&
@@ -25,8 +25,7 @@ export const registerPage = () => {
     } else if (currentUser.pswd.length < 8) {
       Toast.error("The password format is no correct");
     } else {
-      const token = await LoginService.registerUser(currentUser);
-      console.log(token);
+      const token = await LoginService.registerUser(currentUser); 
       if (token != null) {
         router.navigate("/user/login");
       } else {
@@ -37,9 +36,9 @@ export const registerPage = () => {
 
   return (
     <View style={styles.container}>
+      <ToastManager position="top" />
       <View style={styles.containerLoginBox}>
         <View>
-          <ToastManager position="bottom" />
           <Text style={styles.title}>Registrate</Text>
           <TextInput
             style={styles.input}
@@ -60,7 +59,7 @@ export const registerPage = () => {
             secureTextEntry={true}
             onChangeText={(text) => inputChange("pswd", text)}
           />
-          <Button title="Registrarse" onPress={() => handleLogin()} />
+          <Button title="Registrarse" onPress={() => handleRegister()} />
         </View>
       </View>
     </View>

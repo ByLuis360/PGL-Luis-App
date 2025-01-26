@@ -20,10 +20,6 @@ export const index = () => {
   }, []);
 
   return null;
-  // router.navigate("/welcome/index")
-  // router.navigate("/login/index")
-
-  /*   */
 };
 
 export default index;

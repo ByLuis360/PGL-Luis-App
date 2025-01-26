@@ -45,11 +45,6 @@ const loginUser = async (user: User) => {
   const jsonValue = await response.json();
   await asyncStorageService.save(asyncStorageService.KEYS.userToken, jsonValue);
 
-  console.log(
-    "Token guardado:",
-    await asyncStorageService.get(asyncStorageService.KEYS.userToken)
-  );
-
   return jsonValue;
 };
 
