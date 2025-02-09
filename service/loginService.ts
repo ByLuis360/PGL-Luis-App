@@ -3,7 +3,7 @@ import { asyncStorageService } from "./async-storage-service";
 
 const IP = "192.168.1.102";
 
-// 172.16.102.71
+// 172.16.98.164
 
 const registerUser = async (user: User) => {
   const response = await fetch("http://" + IP + ":5000/auth/register", {
