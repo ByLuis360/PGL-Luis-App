@@ -1,9 +1,10 @@
 import { User } from "../types/User";
 import { asyncStorageService } from "./async-storage-service";
+import axios from "axios";
 
 const IP = "192.168.1.102";
 
-// 172.16.98.164
+// 172.16.98.165
 
 const registerUser = async (user: User) => {
   const response = await fetch("http://" + IP + ":5000/auth/register", {
@@ -27,25 +28,27 @@ const registerUser = async (user: User) => {
 };
 
 const loginUser = async (user: User) => {
-  const response = await fetch("http://" + IP + ":5000/auth/login", {
-    method: "POST",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      email: user.email,
-      pswd: user.pswd,
-    }),
-  });
+  try {
+    const response = await axios.post(
+      `http://${IP}:5000/auth/login`,
+      {
+        email: user.email,
+        pswd: user.pswd,
+      }
+    );
 
-  if (response.status == 401) {
-    return null;
-  }
-  const jsonValue = await response.json();
-  await asyncStorageService.save(asyncStorageService.KEYS.userToken, jsonValue);
+    if (response.status == 401) {
+      return null;
+    }
 
-  return jsonValue;
+    const jsonValue = response.data.object.token;
+    await asyncStorageService.save(
+      asyncStorageService.KEYS.userToken,
+      jsonValue
+    );
+
+    return jsonValue;
+  } catch (error) {}
 };
 
 const LoginService = {

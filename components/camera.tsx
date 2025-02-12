@@ -4,6 +4,9 @@ import { CameraType, CameraView, useCameraPermissions } from "expo-camera";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import PictureService from "../service/pictureService";
 import { Picture } from "../types/Picture";
+import { asyncStorageService } from "../service/async-storage-service";
+import { getDefaultUser, User } from "../types/User";
+import { router } from "expo-router";
 
 type CameraProps = {
   setLastPicture: Function;
@@ -26,16 +29,21 @@ const Camera = ({ setLastPicture }: CameraProps) => {
 
     const picture = await cameraRef.current?.takePictureAsync({ base64: true });
 
-    const token = await PictureService.savePicture(
-      picture!.height,
-      picture!.width,
-      picture!.base64
-    );
-
-    console.log(token)
+    if (picture!.base64) {
+      const token = await asyncStorageService.get(
+        asyncStorageService.KEYS.userToken
+      );
+      await PictureService.savePicture(
+        token,
+        picture!.height,
+        picture!.width,
+        picture?.base64
+      );
+    }
 
     if (picture != null && picture.base64 != null) {
       setLastPicture(picture.base64);
+      router.navigate("/(drawer)/galery");
     } else {
       alert("Ocurrió un error sacando una foto.");
     }
